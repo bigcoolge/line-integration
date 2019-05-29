@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: citnow-line-integration
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${MYSQL_USERNAME_TIMEBOOKER:mc_citnow_line}
+    password: ${MYSQL_PASSWORD_TIMEBOOKER:mc_citnow_line}
+    url: jdbc:mariadb://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_SCHEMA_TIMEBOOKER:mc_citnow_line}
+#  jpa:
+#    show-sql: true
+
+line.bot:
+  channelToken: ${LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN}
+  channelSecret: ${LINECORP_PLATFORM_CHANNEL_CHANNELSECRET}
+  handler.path: ${LINECORP_PLATFORM_CHANNEL_CALLBACKURL}

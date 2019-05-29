@@ -1,0 +1,19 @@
+{
+  "name": "TOM LINE MSG starter",
+  "description": "Sample Application for LINE MSG",
+  "repository": "https://github.com/bigcoolge/line-integration",
+  "env": {
+    "LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN": {
+      "description": "Channel Token",
+      "required": true
+    },
+    "LINECORP_PLATFORM_CHANNEL_CHANNELSECRET": {
+      "description": "Channel secret",
+      "required": true
+    },
+    "LINECORP_PLATFORM_CHANNEL_CALLBACKURL": {
+      "description": "Callback URL",
+      "required": true
+    }
+  }
+}
