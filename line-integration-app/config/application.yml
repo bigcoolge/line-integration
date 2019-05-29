@@ -6,6 +6,6 @@ spring:
     name: citnow-line-integration
 
 line.bot:
-  channelToken: ${LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN}
-  channelSecret: ${LINECORP_PLATFORM_CHANNEL_CHANNELSECRET}
-  handler.path: ${LINECORP_PLATFORM_CHANNEL_CALLBACKURL}
+  channel-token: ${CHANNEL_TOKEN}
+  channel-secret: ${CHANNEL_SECRET}
+  handler.path: /callback
