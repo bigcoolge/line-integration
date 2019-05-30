@@ -24,7 +24,7 @@
 
 		<mariadb.version>2.3.0</mariadb.version>
 
-		<line.bot.version>2.4.0</line.bot.version>
+		<line.bot.version>2.6.0</line.bot.version>
 	</properties>
 
 	<modules>
