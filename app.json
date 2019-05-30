@@ -3,11 +3,11 @@
   "description": "Sample Application for LINE MSG",
   "repository": "https://github.com/bigcoolge/line-integration",
   "env": {
-    "CHANNEL_TOKEN": {
+    "LINE_BOT_CHANNEL_TOKEN": {
       "description": "Channel Token",
       "required": true
     },
-    "CHANNEL_SECRET": {
+    "LINE_BOT_CHANNEL_SECRET": {
       "description": "Channel secret",
       "required": true
     }
