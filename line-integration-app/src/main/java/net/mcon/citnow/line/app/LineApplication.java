@@ -21,9 +21,9 @@ import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
-import com.linecorp.bot.model.message.ImageMessage;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.VideoMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
@@ -84,7 +84,7 @@ public class LineApplication {
 			System.out.println(" ===== " + videoInfo);
 			//TODO: get userId by Phone
 			PushMessage msg = new PushMessage("U55dbae93eeaee85433eeb60d77461e0b",
-					Arrays.asList(new ImageMessage(videoInfo.getVideoUrl(), videoInfo.getPicUrl())));
+					Arrays.asList(new VideoMessage(videoInfo.getVideoUrl(), videoInfo.getPicUrl())));
 			CompletableFuture<BotApiResponse> response = client.pushMessage(msg);
 			if (response != null) {
 				return StringUtils.isNotBlank(response.get().getMessage());
