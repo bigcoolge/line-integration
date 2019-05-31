@@ -1,5 +1,7 @@
 package net.mcon.citnow.line.app;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +23,12 @@ import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
+import com.linecorp.bot.model.message.ImagemapMessage;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
-import com.linecorp.bot.model.message.VideoMessage;
+import com.linecorp.bot.model.message.imagemap.ImagemapArea;
+import com.linecorp.bot.model.message.imagemap.ImagemapExternalLink;
+import com.linecorp.bot.model.message.imagemap.ImagemapVideo;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
@@ -78,13 +83,17 @@ public class LineApplication {
 	}
 
 	@PostMapping("/api/send")
-	public boolean sendNotification(@RequestBody VideoInfo videoInfo) throws InterruptedException, ExecutionException {
+	public boolean sendNotification(@RequestBody VideoInfo videoInfo)
+			throws InterruptedException, ExecutionException, URISyntaxException {
 		if (videoInfo != null && !StringUtils.isAnyBlank(videoInfo.getChannelId(), videoInfo.getUserPhone(),
 				videoInfo.getVideoUrl(), videoInfo.getPicUrl())) {
 			System.out.println(" ===== " + videoInfo);
-			//TODO: get userId by Phone
-			PushMessage msg = new PushMessage("U55dbae93eeaee85433eeb60d77461e0b",
-					Arrays.asList(new VideoMessage(videoInfo.getVideoUrl(), videoInfo.getPicUrl())));
+			// TODO: get userId by Phone
+			ImagemapMessage content = ImagemapMessage.builder()
+					.video(new ImagemapVideo(null, new URI(videoInfo.getPicUrl()), new ImagemapArea(0,0,1040,1040),
+							new ImagemapExternalLink(new URI(videoInfo.getVideoUrl()), "CitNOW video")))
+					.build();
+			PushMessage msg = new PushMessage("U55dbae93eeaee85433eeb60d77461e0b", Arrays.asList(content));
 			CompletableFuture<BotApiResponse> response = client.pushMessage(msg);
 			if (response != null) {
 				return StringUtils.isNotBlank(response.get().getMessage());
