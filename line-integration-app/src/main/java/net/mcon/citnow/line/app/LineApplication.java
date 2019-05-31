@@ -27,8 +27,10 @@ import com.linecorp.bot.model.message.ImagemapMessage;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.message.imagemap.ImagemapArea;
+import com.linecorp.bot.model.message.imagemap.ImagemapBaseSize;
 import com.linecorp.bot.model.message.imagemap.ImagemapExternalLink;
 import com.linecorp.bot.model.message.imagemap.ImagemapVideo;
+import com.linecorp.bot.model.message.imagemap.URIImagemapAction;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
@@ -90,7 +92,11 @@ public class LineApplication {
 			System.out.println(" ===== " + videoInfo);
 			// TODO: get userId by Phone
 			ImagemapMessage content = ImagemapMessage.builder()
-					.video(new ImagemapVideo(null, new URI(videoInfo.getPicUrl()), new ImagemapArea(0,0,1040,1040),
+					.baseUrl(videoInfo.getPicUrl())
+					.altText("The image is here")
+					.baseSize(new ImagemapBaseSize(1024, 1024))
+					.actions(Arrays.asList(new URIImagemapAction(videoInfo.getVideoUrl(), new ImagemapArea(0, 0, 1040, 1040))))
+					.video(new ImagemapVideo(new URI(videoInfo.getVideoUrl()), new URI(videoInfo.getPicUrl()), new ImagemapArea(0, 0, 1040, 1040),
 							new ImagemapExternalLink(new URI(videoInfo.getVideoUrl()), "CitNOW video")))
 					.build();
 			PushMessage msg = new PushMessage("U55dbae93eeaee85433eeb60d77461e0b", Arrays.asList(content));
