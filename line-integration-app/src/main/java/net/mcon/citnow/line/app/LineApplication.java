@@ -91,14 +91,15 @@ public class LineApplication {
 				videoInfo.getVideoUrl(), videoInfo.getPicUrl())) {
 			System.out.println(" ===== " + videoInfo);
 			// TODO: get userId by Phone
-			ImagemapMessage content = ImagemapMessage.builder()
-					.baseUrl(videoInfo.getPicUrl())
-					.altText("Your car's video is ready")
-					.baseSize(new ImagemapBaseSize(1040, 1040))
-					.actions(Arrays.asList(new URIImagemapAction(videoInfo.getVideoUrl(), new ImagemapArea(0, 0, 700, 700))))
+			TextMessage content = new TextMessage("The video is ready: " + videoInfo.getVideoUrl());
+//			ImagemapMessage content = ImagemapMessage.builder()
+//					.baseUrl(videoInfo.getPicUrl())
+//					.altText("Your car's video is ready")
+//					.baseSize(new ImagemapBaseSize(1040, 1040))
+//					.actions(Arrays.asList(new URIImagemapAction(videoInfo.getVideoUrl(), new ImagemapArea(0, 0, 700, 700))))
 //					.video(new ImagemapVideo(new URI(videoInfo.getVideoUrl()), new URI(videoInfo.getPicUrl()), new ImagemapArea(0, 0, 700, 700),
 //							new ImagemapExternalLink(new URI(videoInfo.getVideoUrl()), "CitNOW video")))
-					.build();
+//					.build();
 			PushMessage msg = new PushMessage("U55dbae93eeaee85433eeb60d77461e0b", Arrays.asList(content));
 			CompletableFuture<BotApiResponse> response = client.pushMessage(msg);
 			if (response != null) {
