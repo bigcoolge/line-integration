@@ -64,4 +64,9 @@ public class LineApplication {
 		}
 		return "why I am here?";
 	}
+	
+	@GetMapping("/api/send")
+	public boolean sendNotification() {
+		return false;
+	}
 }
