@@ -94,7 +94,7 @@ public class LineApplication {
 			ImagemapMessage content = ImagemapMessage.builder()
 					.baseUrl(videoInfo.getPicUrl())
 					.altText("Your car's video is ready")
-					.baseSize(new ImagemapBaseSize(700, 700))
+					.baseSize(new ImagemapBaseSize(1040, 1040))
 					.actions(Arrays.asList(new URIImagemapAction(videoInfo.getVideoUrl(), new ImagemapArea(0, 0, 700, 700))))
 					.video(new ImagemapVideo(new URI(videoInfo.getVideoUrl()), new URI(videoInfo.getPicUrl()), new ImagemapArea(0, 0, 700, 700),
 							new ImagemapExternalLink(new URI(videoInfo.getVideoUrl()), "CitNOW video")))
