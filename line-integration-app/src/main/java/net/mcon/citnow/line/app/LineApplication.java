@@ -77,7 +77,7 @@ public class LineApplication {
 		userMap.put("13520346656", "U55dbae93eeaee85433eeb60d77461e0b");
 	}
 
-	@PostMapping("/api/send")
+	@PostMapping("/api/messages")
 	public boolean sendNotification(@RequestBody VideoInfo videoInfo)
 			throws InterruptedException, ExecutionException, URISyntaxException {
 		if (videoInfo != null && !StringUtils.isAnyBlank(videoInfo.getChannelId(), videoInfo.getUserPhone(),
