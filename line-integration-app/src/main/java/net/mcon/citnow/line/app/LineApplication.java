@@ -81,7 +81,7 @@ public class LineApplication {
 	public boolean sendNotification(@RequestBody VideoInfo videoInfo)
 			throws InterruptedException, ExecutionException, URISyntaxException {
 		if (videoInfo != null && !StringUtils.isAnyBlank(videoInfo.getChannelId(), videoInfo.getUserPhone(),
-				videoInfo.getSummary(), videoInfo.getDescription(), videoInfo.getVideoUrl(), videoInfo.getPicUrl())) {
+				videoInfo.getVideoUrl())) {
 			System.out.println(" ===== " + videoInfo);
 			// TODO: get userId by Phone
 			TextMessage content = new TextMessage("The video is ready: " + videoInfo.getVideoUrl());
